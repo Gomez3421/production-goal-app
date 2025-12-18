@@ -108,16 +108,16 @@ if st.button("Submit"):
         </style>
         """, unsafe_allow_html=True)
 
-        table_html = """
-        <div class="card">
-            <h4 style="text-align:center;">3900-1 - 3900 Series</h4>
-            <table>
-                <tr>
-                    <th>Range</th>
-                    <th>U</th>
-                    <th>G</th>
-                </tr>
-        """
+     table_html = (
+    '<div class="card">'
+    '<h4 style="text-align:center;">3900-1 - 3900 Series</h4>'
+    '<table>'
+    '<tr>'
+    '<th>Range</th>'
+    '<th>U</th>'
+    '<th>G</th>'
+    '</tr>'
+)
 
         for time, u, g in rows:
             color = "green" if u >= g else "red"
@@ -144,4 +144,5 @@ if st.button("Submit"):
         st.metric("Hourly Goal", goal)
         st.metric("Total Units", round(total_units, 1))
         st.metric("Total Goal (All Hours)", round(goal * len(TIME_BLOCKS), 1))
+
 
