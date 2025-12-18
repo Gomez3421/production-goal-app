@@ -51,7 +51,7 @@ for time in TIME_BLOCKS:
     units[time] = st.number_input(f"{time}", min_value=0.0, step=0.5, key=time)
 def get_goal_for_time(time, base_goal):
 
-if time in ["11:30–12:30", "14:30–15:00"]:
+    if time in ["11:30–12:30", "14:30–15:00"]:
         return round(base_goal * 0.55, 1)  # ~20 if base is ~36–40
     return base_goal
 
@@ -151,6 +151,7 @@ if st.button("Submit"):
 
         st.metric("Hourly Goal", goal)
         st
+
 
 
 
