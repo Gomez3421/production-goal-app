@@ -69,80 +69,82 @@ if st.button("Submit"):
 
         st.header("Results")
 
-        st.markdown("""
-        <style>
-        .card {
-            background-color: #1f2a2e;
-            border-radius: 10px;
-            padding: 15px;
-            width: 100%;
-            color: white;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 15px;
-        }
-        th {
-            background-color: #2c3b40;
-            padding: 8px;
-            text-align: center;
-        }
-        td {
-            padding: 8px;
-            text-align: center;
-            border-bottom: 1px solid #3a4a50;
-        }
-        .red {
-            color: #ff4b4b;
-            font-weight: bold;
-        }
-        .green {
-            color: #2ecc71;
-            font-weight: bold;
-        }
-        .total {
-            font-weight: bold;
-            background-color: #2c3b40;
-        }
-        </style>
-        """, unsafe_allow_html=True)
+        st.markdown(
+            """
+            <style>
+            .card {
+                background-color: #1f2a2e;
+                border-radius: 10px;
+                padding: 15px;
+                width: 100%;
+                color: white;
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 15px;
+            }
+            th {
+                background-color: #2c3b40;
+                padding: 8px;
+                text-align: center;
+            }
+            td {
+                padding: 8px;
+                text-align: center;
+                border-bottom: 1px solid #3a4a50;
+            }
+            .red {
+                color: #ff4b4b;
+                font-weight: bold;
+            }
+            .green {
+                color: #2ecc71;
+                font-weight: bold;
+            }
+            .total {
+                font-weight: bold;
+                background-color: #2c3b40;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
-     table_html = (
-    '<div class="card">'
-    '<h4 style="text-align:center;">3900-1 - 3900 Series</h4>'
-    '<table>'
-    '<tr>'
-    '<th>Range</th>'
-    '<th>U</th>'
-    '<th>G</th>'
-    '</tr>'
-)
+        table_html = (
+            '<div class="card">'
+            '<h4 style="text-align:center;">3900-1 - 3900 Series</h4>'
+            '<table>'
+            '<tr>'
+            '<th>Range</th>'
+            '<th>U</th>'
+            '<th>G</th>'
+            '</tr>'
+        )
 
         for time, u, g in rows:
             color = "green" if u >= g else "red"
-            table_html += f"""
-            <tr>
-                <td>{time}</td>
-                <td class="{color}">{u}</td>
-                <td>{g}</td>
-            </tr>
-            """
+            table_html += (
+                f'<tr>'
+                f'<td>{time}</td>'
+                f'<td class="{color}">{u}</td>'
+                f'<td>{g}</td>'
+                f'</tr>'
+            )
 
-        table_html += f"""
-            <tr class="total">
-                <td>TOTAL</td>
-                <td>{round(total_units, 1)}</td>
-                <td></td>
-            </tr>
-            </table>
-        </div>
-        """
+        table_html += (
+            f'<tr class="total">'
+            f'<td>TOTAL</td>'
+            f'<td>{round(total_units, 1)}</td>'
+            f'<td></td>'
+            f'</tr>'
+            '</table>'
+            '</div>'
+        )
 
         st.markdown(table_html, unsafe_allow_html=True)
 
         st.metric("Hourly Goal", goal)
-        st.metric("Total Units", round(total_units, 1))
-        st.metric("Total Goal (All Hours)", round(goal * len(TIME_BLOCKS), 1))
+        st
 
 
